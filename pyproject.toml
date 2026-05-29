@@ -1,0 +1,29 @@
+[project]
+name = "finance-research-agent-workshop"
+version = "0.1.0"
+description = "LangChain platform workshop centered on a financial research agent — build, govern, deploy, observe"
+requires-python = ">=3.11"
+dependencies = [
+    "deepagents>=0.4.12",
+    "deepagents-cli",
+    "grandalf>=0.8",
+    "ipython>=9.6.0",
+    "ipywidgets>=8.1.0",
+    "jupyter>=1.1.1",
+    "langchain>=1.0.1",
+    "langchain-anthropic>=1.0.0",
+    "langchain-aws>=1.0.0",
+    "langchain-community>=0.4",
+    "langchain-openai>=1.0.1",
+    "langgraph>=1.0.1",
+    "langgraph-cli[inmem]>=0.4.21",
+    "langsmith>=0.4.37",
+    "notebook>=7.4.7",
+    "python-dotenv>=1.1.1",
+    "requests>=2.32.5",
+    "sqlalchemy>=2.0",
+    "tavily-python>=0.7.21",
+]
+
+[tool.setuptools]
+packages = ["agents", "utils"]
