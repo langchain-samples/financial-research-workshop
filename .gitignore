@@ -44,4 +44,4 @@ Thumbs.db
 .langgraph_api/
 
 # Notebook content
-langsmith-guided-tour/
+.cursor/
