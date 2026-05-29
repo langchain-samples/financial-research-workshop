@@ -15,17 +15,17 @@ load_dotenv(dotenv_path="../.env", override=True)
 from langchain.chat_models import init_chat_model
 
 # --- Default: Anthropic, direct ---
-# model = init_chat_model("anthropic:claude-sonnet-4-6")
+model = init_chat_model("anthropic:claude-sonnet-4-6")
 
 # --- Anthropic via the LangSmith LLM Gateway (Module 2 §1.4) ---
 # Routes every model call through the LangSmith Gateway so that workspace
 # policies (PII / secrets / allow-lists / cost caps) are enforced.
-model = init_chat_model(
-    model="claude-sonnet-4-6",
-    model_provider="anthropic",
-    base_url="https://gateway.smith.langchain.com/anthropic",
-    api_key=os.environ["LANGSMITH_API_KEY_GATEWAY"],
-)
+# model = init_chat_model(
+#     model="claude-sonnet-4-6",
+#     model_provider="anthropic",
+#     base_url="https://gateway.smith.langchain.com/anthropic",
+#     api_key=os.environ["LANGSMITH_API_KEY_GATEWAY"],
+# )
 
 # --- OpenAI ---
 # model = init_chat_model("openai:gpt-4.1-mini")
