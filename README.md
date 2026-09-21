@@ -34,11 +34,10 @@ cp .env.example .env
 | Key | Required for | Notes |
 |-----|--------------|-------|
 | `LANGSMITH_API_KEY` | All modules | Tracing, deployments, gateway, evaluations. Use a service key (`lsv2_sk_...`) for Module 2 deploys. |
-| `ANTHROPIC_API_KEY` | All modules | Default model (`claude-sonnet-4-6`) is routed through the LangSmith LLM Gateway. |
+| `ANTHROPIC_API_KEY` | All modules | Default model (`claude-sonnet-4-6`) and its native web search. Routed through the LangSmith LLM Gateway in Module 2. |
 | `WORKSPACE_ID` | Module 2 | The LangSmith workspace the gateway policy applies to. Find it in Settings → Workspace. |
 | `LANGSMITH_API_KEY_GATEWAY` | Module 2 (after §1.4 flip) and the deployed agent | Same value as `LANGSMITH_API_KEY`. Required under a non-reserved name because `langgraph deploy` strips `LANGSMITH_API_KEY` from deployed containers. |
-| `TAVILY_API_KEY` | Modules 1 and 3 | Web search tool used by the research agent. <https://tavily.com> |
-| `OPENAI_API_KEY` | Optional | Only required if you swap the default model in `utils/models.py` to OpenAI. |
+| `OPENAI_API_KEY` | Optional | Only required if you swap the default model in `utils/models.py` to OpenAI (which also switches web search to OpenAI's native tool). |
 
 ```bash
 # 3. Start Jupyter
