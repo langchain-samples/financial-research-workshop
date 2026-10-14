@@ -25,6 +25,9 @@ model = init_chat_model(
     model_provider="openai",
     base_url="https://gateway.smith.langchain.com/openai",
     api_key=os.environ["LANGSMITH_API_KEY_GATEWAY"],
+    # Org-scoped gateway keys must name the target workspace so the gateway
+    # applies that workspace's provider secrets and policies.
+    default_headers={"X-Tenant-ID": os.environ["WORKSPACE_ID"]},
 )
 
 # --- Anthropic ---
