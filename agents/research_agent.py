@@ -72,7 +72,7 @@ def build_research_agent(
 
     # Provider-native web search: the model runs the search server-side and
     # grounds its answer in live results. No third-party search SDK or key.
-    search = web_search(provider="anthropic")
+    search = web_search(provider="openai")
 
     research_subagent = {
         "name": "research-agent",

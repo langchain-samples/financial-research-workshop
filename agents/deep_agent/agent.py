@@ -22,7 +22,7 @@ AGENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Provider-native web search: the model runs the search server-side and grounds
 # its answer in live results. No third-party search SDK or key. See utils/search.py.
-search = web_search(provider="anthropic")
+search = web_search(provider="openai")
 
 
 research_subagent = {
