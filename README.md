@@ -34,10 +34,10 @@ cp .env.example .env
 | Key | Required for | Notes |
 |-----|--------------|-------|
 | `LANGSMITH_API_KEY` | All modules | Tracing, deployments, gateway, evaluations. Use a service key (`lsv2_sk_...`) for Module 2 deploys. |
-| `ANTHROPIC_API_KEY` | All modules | Default model (`claude-sonnet-4-6`) and its native web search. Routed through the LangSmith LLM Gateway in Module 2. |
+| `OPENAI_API_KEY` | All modules | Default model (`gpt-4.1-mini`) and its native web search. Routed through the LangSmith LLM Gateway in Module 2. |
 | `WORKSPACE_ID` | Module 2 | The LangSmith workspace the gateway policy applies to. Find it in Settings → Workspace. |
 | `LANGSMITH_API_KEY_GATEWAY` | Module 2 (after §1.4 flip) and the deployed agent | Same value as `LANGSMITH_API_KEY`. Required under a non-reserved name because `langgraph deploy` strips `LANGSMITH_API_KEY` from deployed containers. |
-| `OPENAI_API_KEY` | Optional | Only required if you swap the default model in `utils/models.py` to OpenAI (which also switches web search to OpenAI's native tool). |
+| `ANTHROPIC_API_KEY` | Optional | Only required if you swap the default model in `utils/models.py` to Anthropic (which also switches web search to Anthropic's native tool). |
 
 ```bash
 # 3. Start Jupyter
@@ -52,9 +52,9 @@ The workshop's default model is configured in `utils/models.py`:
 
 ```python
 model = init_chat_model(
-    model="claude-sonnet-4-6",
-    model_provider="anthropic",
-    base_url="https://gateway.smith.langchain.com/anthropic",
+    model="gpt-4.1-mini",
+    model_provider="openai",
+    base_url="https://gateway.smith.langchain.com/openai",
 )
 ```
 
@@ -63,11 +63,11 @@ The `base_url` routes every model call through the **LangSmith LLM Gateway**, wh
 To switch providers, edit `utils/models.py`:
 
 ```python
-# Anthropic, direct (bypasses the gateway and any workspace policies)
-# model = init_chat_model("anthropic:claude-sonnet-4-6")
-
-# OpenAI
+# OpenAI, direct (bypasses the gateway and any workspace policies)
 # model = init_chat_model("openai:gpt-4.1-mini")
+
+# Anthropic
+# model = init_chat_model("anthropic:claude-sonnet-4-6")
 
 # Azure OpenAI
 # from langchain_openai import AzureChatOpenAI
@@ -75,7 +75,7 @@ To switch providers, edit `utils/models.py`:
 
 # AWS Bedrock
 # from langchain_aws import ChatBedrockConverse
-# model = ChatBedrockConverse(provider="anthropic", model_id="...")
+# model = ChatBedrockConverse(provider="openai", model_id="...")
 ```
 
 ## Deploy (Module 2)

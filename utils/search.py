@@ -15,7 +15,7 @@ recognizes it and handles the search loop itself:
 
     agent = create_deep_agent(model=model, tools=[web_search()])
 
-`web_search()` returns the spec matched to the active provider (Anthropic by
+`web_search()` returns the spec matched to the active provider (OpenAI by
 default). Keep it provider-agnostic by deriving the provider from the model,
 or pass `provider=` explicitly.
 """
@@ -27,7 +27,7 @@ from typing import Optional
 
 def web_search(
     *,
-    provider: str = "anthropic",
+    provider: str = "openai",
     max_uses: int = 3,
     max_results: Optional[int] = None,
 ) -> dict:
@@ -37,10 +37,10 @@ def web_search(
     the results — there is no local tool body to run and no third-party API key.
 
     Args:
-        provider: which provider's native search to use. ``"anthropic"`` (default)
-            uses Anthropic's ``web_search_20250305`` server tool; ``"openai"`` uses
-            OpenAI's ``web_search`` built-in tool. Keep this aligned with the model
-            in ``utils/models.py``.
+        provider: which provider's native search to use. ``"openai"`` (default)
+            uses OpenAI's ``web_search`` built-in tool; ``"anthropic"`` uses
+            Anthropic's ``web_search_20250305`` server tool. Keep this aligned with
+            the model in ``utils/models.py``.
         max_uses: Anthropic only — cap on how many searches the model may run per
             turn (keeps a research turn from looping). Ignored by OpenAI.
         max_results: Anthropic only — optional cap on results per search.
